@@ -1,7 +1,9 @@
 package com.web;
 
+import com.web.interfaces.IPublishingArtifact;
 import com.web.models.Author;
 import com.web.models.Book;
+import com.web.models.PublishingRetailer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +11,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Book book = new Book();
-
-        book.setName("Amintiti din copilarie");
-        book.setSubtitle("Carte de aventura");
-        List<Author> authorList = new ArrayList<>();
-        authorList.add(new Author());
-        authorList.add(new Author());
-        authorList.add(new Author());
-        book.setAuthors(authorList);
-
-        System.out.println(book);
+        PublishingRetailer publishingRetailer = new PublishingRetailer();
+        List<IPublishingArtifact> bookList = new ArrayList<>();
+        for(Integer i = 1; i < 20; i++){
+            bookList.add(new Book("Book" + i, i.toString()));
+        }
+        publishingRetailer.setPublishingArtifacts(bookList);
+        System.out.println(publishingRetailer.getBooksForPublishingRetailerIDXML(1));
     }
 }

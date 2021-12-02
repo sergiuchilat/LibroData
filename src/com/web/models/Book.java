@@ -1,9 +1,11 @@
 package com.web.models;
 
+import com.web.interfaces.IPublishingArtifact;
+
 import java.util.Date;
 import java.util.List;
 
-public class Book {
+public class Book implements IPublishingArtifact {
     private int ID;
     private String name;
     private String subtitle;
@@ -13,6 +15,15 @@ public class Book {
     private int languageID;
     private Date createdOn;
     private List<Author> authors;
+
+    public Book(){
+
+    }
+
+    public Book(String name, String ISBN){
+        this.name = name;
+        this.ISBN = ISBN;
+    }
 
     public int getID() {
         return ID;
@@ -84,6 +95,20 @@ public class Book {
 
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
+    }
+
+    @Override
+    public String publish() {
+        return "<book>\n" +
+                " <title>" + this.name + "</title>" +
+                "  <subtitle>SubtitleBook1</subtitle> " +
+                "  <isbn>" + this.ISBN + "</isbn>" +
+                "  <pageCount>pageCountBook1</pageCount>" +
+                "  <keywords>keywordsBook1</keywords>" +
+                "  <languageID>languageIDBook1</languageID>" +
+                "  <createdOn>createdOnBook1<createdOn>\n" +
+                "  <authors>authorsBook1<authors> " +
+                "</book>";
     }
 
     @Override
